@@ -1,6 +1,0 @@
-[
-{
-  "directory": "c:\\dev\\Matrix",
-  "arguments": ["C:\\msys64\\ucrt64\\bin\\gcc.exe", "-c", "-m64", "-Iinclude", "-I_deps", "-I_deps\\lua", "-I_deps\\glad", "-I_deps\\glfw", "-I_deps\\imgui", "-I_deps\\imgui\\backends", "-I_deps\\lua\\src", "-DKTM_DEBUG", "-DSOL_LUA_VERSION=503", "-fexceptions", "-municode", "-g", "-O0", "-o", "c:\\dev\\Matrix\\build\\.objs\\BTC\\windows\\x64\\src\\_deps_cpp\\gl.c.obj", "src\\_deps_cpp\\gl.c"],
-  "file": "src\\_deps_cpp\\gl.c"
-}]
