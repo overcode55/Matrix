@@ -21,16 +21,12 @@ target("BTC")
     set_kind("binary")
     set_languages("c++23")
     add_cxflags("-municode")
-    -- Force the output straight into a completely flat root build directory
     set_targetdir("$(projectdir)/build")
     
-    -- Keep object tracking separate so debug/release switches don't clash
-    set_objectdir("$(projectdir)/build/.objs/$(plat)/$(arch)/$(mode)") 
+    set_objectdir("$(projectdir)/build/.objs/$(mode)") 
 
-    -- Enforce C++23 Module resolution tree scanning
     set_policy("build.c++.modules", true)
 
-    -- Use the platform default toolchain (configured via terminal config commands)
     set_toolchains("gcc")
     if is_mode("release") then 
         add_cxflags("-O2")
@@ -41,33 +37,22 @@ target("BTC")
         add_cxflags("-O0")
         add_cxxflags("-O0")
     end
-    -- =========================
-    -- CONFIGURATION MACROS
-    -- =========================
     if is_mode("release") then
         add_defines("KTM_RELEASE")
     else
         add_defines("KTM_DEBUG")
     end
     
-    -- Enforce sol2 Lua 5.3 compilation framework globally
     add_defines("SOL_LUA_VERSION=503")
 
-    -- =========================
-    -- FILES (.ixx/.cppm modules will automatically map here)
-    -- =========================
-    add_files("src/**.c , src/**.cpp , src/**.cppm")
+    add_files("src/**.c")
+    add_files("src/**.cpp")
+    add_files("src/**.cppm")
 
-    -- Compile raw C dependency files independently without throwing C++ module errors
     if has_config("enable_vulkan") then
-        add_files("src/_deps_cpp/*.c")
-    else
-        add_files("src/_deps_cpp/gl.c")
+        add_defines("MATRIX_USE_VULKAN");
     end
-
-    -- =========================
-    -- INCLUDES
-    -- =========================
+    
     add_includedirs(
         "include",
         "_deps",
@@ -76,7 +61,7 @@ target("BTC")
         "_deps/glfw",
         "_deps/imgui",
         "_deps/imgui/backends",
-        "_deps/lua/src"  -- wherever lua.h/lauxlib.h/lualib.h live
+        "_deps/lua/src"  
     )
 
     -- =========================
