@@ -1,0 +1,5 @@
+# Treat _deps as third-party vendor code (excludes it from language stats)
+_deps/** linguist-vendored
+
+# Explicitly mark any HTML files inside _deps as generated or documentation
+_deps/**/*.html linguist-documentation
