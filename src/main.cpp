@@ -1,7 +1,9 @@
 import std.compat;
-import ErrorHandler;
+import InfoHandler;
+import App;
 
 int main(){
-    show<Runtime_Error>(Runtime_Error("test runtime err"))
+    App app("title");
+    show(Error("test runtime err" , {"first context" , "second cotext"}));
     return 0;
 }

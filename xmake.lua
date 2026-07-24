@@ -54,7 +54,6 @@ target("BTC")
     end
     
     add_includedirs(
-        "include",
         "_deps",
         "_deps/lua",
         "_deps/glad",
